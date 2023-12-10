@@ -1,5 +1,5 @@
-# EventMe
-An Event Management website in mern stack
+# EventMe (MERN Stack)
 
-currently working on this project 
-anyone who want to work with me kindly message me at whatsapp +91 8291126896
+Welcome to the Event Management project, built using the MERN stack (MongoDB, Express.js, React, Node.js). I am currently working on this project and welcome collaboration from developers interested in contributing.
+
+If you are interested in contributing to this project, please feel free to reach out to us. You can contact us via WhatsApp at +91 8291126896.
