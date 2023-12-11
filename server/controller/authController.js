@@ -1,14 +1,11 @@
 const catchAsyncError = require("../middlewares/catchAsyncError");
 const User = require("../model/userModel");
 const AppError = require("../utils/appError");
+const { sendTokenResponse } = require("../utils/sendJwtToken");
 
 exports.signUp = catchAsyncError(async (req, res) => {
   const user = await User.create(req.body);
-
-  res.status(201).json({
-    status: "success",
-    user,
-  });
+  sendTokenResponse(user, res, 201);
 });
 
 exports.login = catchAsyncError(async (req, res, next) => {
@@ -17,14 +14,12 @@ exports.login = catchAsyncError(async (req, res, next) => {
   if (!email || !password) {
     return next(new AppError("Please Provide Email and Password", 400));
   }
+
   const user = await User.findOne({ email }).select("+password");
+
   if (!user || !(await user.comparePassword(password, user.password))) {
     return next(new AppError("Incorrect Email and Password", 404));
   }
 
-  res.status(200).json({
-    status: "Success",
-    user,
-  });
+  sendTokenResponse(user, res, 200);
 });
-
